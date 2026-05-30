@@ -1,6 +1,6 @@
-# Table Topics
+# Gorące pytania
 
-Prosta strona do losowania pytan typu Table Topics dla czlonkow Toastmasters.
+Prosta strona do losowania gorących pytań dla członków Toastmasters.
 
 ## Jak to dziala
 
