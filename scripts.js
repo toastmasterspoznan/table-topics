@@ -29,7 +29,7 @@ function drawQuestion() {
   lastQuestionIndex = nextIndex;
   questionElement.textContent = questions[nextIndex];
   statusElement.textContent = "Wylosowane pytanie";
-  metaElement.textContent = "Kliknij ponownie, aby wylosowac kolejne.";
+  metaElement.textContent = "Kliknij ponownie, aby wylosować kolejne.";
 }
 
 async function loadQuestions() {
@@ -37,7 +37,7 @@ async function loadQuestions() {
     const response = await fetch("pytania.txt", { cache: "no-store" });
 
     if (!response.ok) {
-      throw new Error("Nie udalo sie pobrac listy pytan.");
+      throw new Error("Nie udało się pobrać listy pytań.");
     }
 
     const rawText = await response.text();
@@ -47,15 +47,15 @@ async function loadQuestions() {
       .filter(Boolean);
 
     if (!questions.length) {
-      throw new Error("Lista pytan jest pusta.");
+      throw new Error("Lista pytań jest pusta.");
     }
 
     statusElement.textContent = "Pytania gotowe";
-    metaElement.textContent = "Dostepnych pytan: " + questions.length;
+    metaElement.textContent = "Dostępnych pytań: " + questions.length;
     drawButton.disabled = false;
   } catch (error) {
-    statusElement.textContent = "Nie udalo sie zaladowac pytan";
-    questionElement.textContent = "Uruchom strone przez prosty serwer HTTP albo GitHub Pages, aby przegladarka mogla wczytac plik pytania.txt.";
+    statusElement.textContent = "Nie udało się załadować pytań";
+    questionElement.textContent = "Uruchom stronę przez prosty serwer HTTP albo GitHub Pages, aby przeglądarka mogła wczytać plik pytania.txt.";
     metaElement.textContent = error.message;
   }
 }
