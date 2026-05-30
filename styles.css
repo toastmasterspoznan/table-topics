@@ -288,6 +288,10 @@ h1 {
   background: rgba(0, 0, 0, 0.72);
 }
 
+.modal-backdrop[hidden] {
+  display: none;
+}
+
 .modal {
   width: min(100%, 760px);
   max-height: min(80vh, 720px);
