@@ -1,5 +1,9 @@
 const infoToggle = document.getElementById("info-toggle");
 const infoPanel = document.getElementById("info-panel");
+const listToggle = document.getElementById("list-toggle");
+const questionsModal = document.getElementById("questions-modal");
+const questionsList = document.getElementById("questions-list");
+const modalClose = document.getElementById("modal-close");
 const drawButton = document.getElementById("draw-button");
 const questionElement = document.getElementById("question");
 const statusElement = document.getElementById("status");
@@ -11,6 +15,37 @@ let lastQuestionIndex = -1;
 function updateInfoPanel() {
   const isHidden = infoPanel.hasAttribute("hidden");
   infoToggle.setAttribute("aria-expanded", String(!isHidden));
+}
+
+function updateQuestionsModal() {
+  const isHidden = questionsModal.hasAttribute("hidden");
+  listToggle.setAttribute("aria-expanded", String(!isHidden));
+}
+
+function renderQuestionsList() {
+  questionsList.innerHTML = "";
+
+  questions.forEach((question) => {
+    const item = document.createElement("li");
+    item.textContent = question;
+    questionsList.appendChild(item);
+  });
+}
+
+function openQuestionsModal() {
+  if (!questions.length) {
+    return;
+  }
+
+  questionsModal.removeAttribute("hidden");
+  document.body.style.overflow = "hidden";
+  updateQuestionsModal();
+}
+
+function closeQuestionsModal() {
+  questionsModal.setAttribute("hidden", "");
+  document.body.style.overflow = "";
+  updateQuestionsModal();
 }
 
 function drawQuestion() {
@@ -53,6 +88,8 @@ async function loadQuestions() {
     statusElement.textContent = "Pytania gotowe";
     metaElement.textContent = "Dostępnych pytań: " + questions.length;
     drawButton.disabled = false;
+    listToggle.disabled = false;
+    renderQuestionsList();
   } catch (error) {
     statusElement.textContent = "Nie udało się załadować pytań";
     questionElement.textContent = "Uruchom stronę przez prosty serwer HTTP albo GitHub Pages, aby przeglądarka mogła wczytać plik pytania.txt.";
@@ -72,5 +109,22 @@ infoToggle.addEventListener("click", () => {
 
 drawButton.addEventListener("click", drawQuestion);
 
+listToggle.addEventListener("click", openQuestionsModal);
+
+modalClose.addEventListener("click", closeQuestionsModal);
+
+questionsModal.addEventListener("click", (event) => {
+  if (event.target === questionsModal) {
+    closeQuestionsModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !questionsModal.hasAttribute("hidden")) {
+    closeQuestionsModal();
+  }
+});
+
 updateInfoPanel();
+updateQuestionsModal();
 loadQuestions();

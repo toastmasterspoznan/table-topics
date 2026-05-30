@@ -93,10 +93,9 @@ h1 {
   line-height: 1.6;
 }
 
-.info-toggle {
+.floating-button {
   position: fixed;
   right: 24px;
-  bottom: 24px;
   z-index: 20;
   width: 44px;
   height: 44px;
@@ -111,8 +110,22 @@ h1 {
   transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
 }
 
-.info-toggle:hover,
-.info-toggle:focus-visible,
+.floating-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.info-toggle {
+  bottom: 24px;
+}
+
+.list-toggle {
+  bottom: 80px;
+  font-size: 1.1rem;
+}
+
+.floating-button:hover,
+.floating-button:focus-visible,
 .draw-button:hover,
 .draw-button:focus-visible,
 .link-button:hover,
@@ -265,10 +278,80 @@ h1 {
   background: var(--red);
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.modal {
+  width: min(100%, 760px);
+  max-height: min(80vh, 720px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #08253a 0%, #05111b 100%);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.modal-close {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--burgundy);
+  color: var(--white);
+  font: inherit;
+  cursor: pointer;
+}
+
+.modal-body {
+  overflow: auto;
+  padding: 18px 22px 22px;
+}
+
+.questions-list {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--white);
+  text-align: left;
+}
+
+.questions-list li + li {
+  margin-top: 12px;
+}
+
 @media (max-width: 640px) {
-  .info-toggle {
+  .floating-button {
     right: 16px;
+  }
+
+  .info-toggle {
     bottom: 16px;
+  }
+
+  .list-toggle {
+    bottom: 72px;
   }
 }
 
@@ -296,6 +379,19 @@ h1 {
 
   .link-button,
   .footer-links a {
+    width: 100%;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .modal-close {
     width: 100%;
   }
 }
