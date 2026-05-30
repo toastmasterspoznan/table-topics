@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Topics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Toastmasters Poznan</p>
+        <h1>Table Topics</h1>
+        <p class="lead">
+          Kompaktowa strona do losowania goracych pytan dla czlonkow Toastmasters. Kliknij i zacznij mowe improwizowana.
+        </p>
+      </div>
+      <button
+        class="info-toggle"
+        type="button"
+        id="info-toggle"
+        aria-expanded="false"
+        aria-controls="info-panel"
+        title="Instrukcja i linki"
+      >i</button>
+    </div>
+
+    <section class="info-panel" id="info-panel" hidden>
+      <p>
+        Pytania sa przechowywane w pliku <strong>pytania.txt</strong>, po jednym pytaniu w kazdej linii. Mozesz je przejrzec w repozytorium albo dopisac wlasne i zaproponowac zmiane.
+      </p>
+      <div class="info-actions">
+        <a class="link-button" href="pytania.txt" target="_blank" rel="noopener">Zobacz wszystkie pytania</a>
+        <a class="link-button" href="https://github.com/toastmasterspoznan/table-topics" target="_blank" rel="noopener">Repozytorium publiczne</a>
+      </div>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <p class="status" id="status">Laduje pytania...</p>
+      <p class="question" id="question">Kliknij przycisk, aby wylosowac pytanie.</p>
+      <div class="controls">
+        <button class="draw-button" type="button" id="draw-button" disabled>Losuj pytanie</button>
+        <span class="meta" id="meta">Czekam na liste pytan.</span>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>
+        Repo jest publiczne, wiec inne osoby moga dodawac pytania do listy i zglaszac poprawki przez GitHub.
+      </p>
+      <div class="footer-links" aria-label="Linki Toastmasters Poznan">
+        <a href="https://www.instagram.com/toastmasterspoznan" target="_blank" rel="noopener">Instagram</a>
+        <a href="http://facebook.com/@toastmasterspoznan" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://toastmasters-poznan.pl/" target="_blank" rel="noopener">Strona klubu</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
